@@ -5,7 +5,8 @@ import ListGroup from './common/ListGroup';
 import {  toast } from 'react-toastify';
 import { deleteMovies, getMovies } from '../services/movieService';
 import { getGenres } from '../services/genreService';
-
+import { NavLink } from 'react-router-dom';
+import { withRouter } from './common/withRouter';
 
 class Movies extends Component {
     constructor() {
@@ -63,6 +64,9 @@ const genres=[{name:'All Generes'},...data]
     handleGenreSelect = (genre) => {
         this.setState({ selectedGenre: genre, currentPage : 1})
     }
+    handleAddMovie=()=>{
+this.props.navigate('/movies/new')
+    }
 
 
     render() {
@@ -90,6 +94,7 @@ const genres=[{name:'All Generes'},...data]
                     <div>
                         <h3>Movies</h3>
                         <p>Showing {filterMovies.length} movies from the database</p>
+<button onClick={this.handleAddMovie} className='btn btn-primary'>Add Movie</button>
 
                         <table className='table table-striped'>
                             <thead>
@@ -106,7 +111,8 @@ const genres=[{name:'All Generes'},...data]
                                     paginatedMovies.map(movie => (
 
                                         <tr key={movie._id}>
-                                            <td>{movie.title}</td>
+                                            <td><NavLink to={`/movies/${movie._id}`}>
+                                                {movie.title}</NavLink></td>
                                             <td>{movie.genre.name}</td>
                                             <td>{movie.numberInStock}</td>
                                             <td>{movie.dailyRentalRate}</td>
@@ -134,4 +140,4 @@ const genres=[{name:'All Generes'},...data]
     }
 }
 
-export default Movies;
+export default withRouter(Movies);

@@ -3,6 +3,8 @@ import Button from './common/Button';
 import Input from './common/Input';
 import Joi  from 'joi-browser';
 import Form from './common/Form';
+import { login } from './../services/authService';
+import { withRouter } from './common/withRouter';
 
 class LoginFrom extends Form{
   constructor() {
@@ -18,9 +20,25 @@ class LoginFrom extends Form{
     password:Joi.string().min(5).max(12).required()
   }
 
-  doSubmit=()=>{
+  doSubmit=async()=>{
     console.log('from submitted')
     console.log(this.state.data)
+    try{
+    const {email,password}=this.state.data
+    const {data:token}=await login(email,password)
+    alert('success')
+    localStorage.setItem('token',token)
+    this.props.navigate('/movies')
+    }catch(ex){
+      if (ex.response && ex.response.status === 400) {
+        const errors = { ...this.state.errors }
+        errors.email = ex.response.data
+        this.setState({ errors })
+        alert('something wrong')
+      }
+
+    }
+    
   }
 
   render() {
@@ -41,4 +59,4 @@ class LoginFrom extends Form{
   }
 }
 
-export default LoginFrom;
+export default withRouter( LoginFrom);

@@ -6,6 +6,9 @@ const apiEndPoint=config.apiUrl+'/movies';
 export function getMovies(){
    return Axios.get(apiEndPoint)
 }
+export function getMovie(movieId){
+   return Axios.get(apiEndPoint+'/'+movieId) 
+}
 export function deleteMovies(movieId){
     return Axios.delete(apiEndPoint +'/'+movieId)
 }

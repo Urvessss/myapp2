@@ -8,6 +8,7 @@ import { Route,Routes } from 'react-router-dom';
 import Home from './component/Home';
 
 import Navbar from './component/Navbar';
+import MovieForm from './component/MovieForm';
 
 
 const App = () => {
@@ -24,6 +25,7 @@ const App = () => {
         <div className='col-12'>
           <Routes>
           <Route path='/movies' element={<Movies/>}/>
+          <Route path='/movies/:new' element={<MovieForm/>}/>
           <Route path='/register' element={<RegisterFrom/>}/>
           <Route path='/login' element={<LoginFrom/>}/>
           <Route path='/' element={<Home/>}/>
