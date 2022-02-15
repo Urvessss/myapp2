@@ -3,6 +3,7 @@ import Form from './common/Form';
 import Joi from 'joi-browser';
 import { register } from './../services/userService';
 import { withRouter } from './common/withRouter';
+
 class RegisterFrom extends Form {
   constructor() {
     super();

@@ -5,7 +5,6 @@ import Joi  from 'joi-browser';
 import Form from './common/Form';
 import { login } from './../services/authService';
 import { withRouter } from './common/withRouter';
-
 class LoginFrom extends Form{
   constructor() {
     super();
