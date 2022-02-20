@@ -1,0 +1,19 @@
+
+.paginationActive a:active{
+    background-color: blue;
+
+}
+.mar{
+    margin: 20px;
+    
+}
+
+.course{
+    background: #fff;
+    width: 300px;
+    padding: 20px;
+    margin: 15px;
+    border:  1px soild yellow;
+    border-radius: 10px;
+    display: inline-block;
+    }
